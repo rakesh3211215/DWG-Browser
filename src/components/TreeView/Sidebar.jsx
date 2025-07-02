@@ -38,28 +38,16 @@ const Sidebar = ({ isOpen }) => {
           to: "/",
           exact: true,
         },
-        { label: "Users", icon: <Users size={18} />, to: "/admin/users" },
         {
-          label: "Settings",
-          icon: <Settings size={18} />,
-          to: "/admin/settings",
-        },
-        {
-          label: "Payment Form",
-          icon: <DollarSign size={18} />,
-          to: "/admin/pricing-menu",
+          label: "Users",
+          icon: <Users size={18} />,
+          to: "/admin/users",
         },
       ],
     },
     {
       title: "Pages",
       items: [
-        {
-          label: "Authentication",
-          icon: <ShieldCheck size={18} />,
-          to: "/authentication",
-          exact: true,
-        },
         {
           label: "Error Pages",
           icon: <FileWarning size={18} />,
@@ -74,41 +62,6 @@ const Sidebar = ({ isOpen }) => {
             { label: "Offline Page", to: "/offline" },
           ],
         },
-        {
-          label: "Utility",
-          icon: <Ban size={18} />,
-          to: "/utility",
-          exact: true,
-        },
-      ],
-    },
-    {
-      title: "Apps",
-      items: [
-        { label: "Todo List", icon: <ListTodo size={18} />, to: "/todo" },
-        { label: "Contacts", icon: <Contact size={18} />, to: "/contacts" },
-        { label: "Calendar", icon: <Calendar size={18} />, to: "/calendar" },
-      ],
-    },
-    {
-      title: "General",
-      items: [
-        {
-          label: "Components",
-          icon: <Component size={18} />,
-          to: "/components",
-        },
-        { label: "Widgets", icon: <Wrench size={18} />, to: "/widgets" },
-        {
-          label: "Extended UI",
-          icon: <Puzzle size={18} />,
-          to: "/extended-ui",
-        },
-        { label: "Icons", icon: <Palette size={18} />, to: "/icons" },
-        { label: "Forms", icon: <ScrollText size={18} />, to: "/forms" },
-        { label: "Tables", icon: <Table size={18} />, to: "/tables" },
-        { label: "Apex Charts", icon: <BarChart2 size={18} />, to: "/charts" },
-        { label: "Maps", icon: <MapPin size={18} />, to: "/maps" },
       ],
     },
   ];
