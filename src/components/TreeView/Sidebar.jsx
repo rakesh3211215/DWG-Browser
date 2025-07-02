@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
+  FileUp,
   ShieldCheck,
   Users,
   Settings,
@@ -32,9 +33,9 @@ const Sidebar = ({ isOpen }) => {
       title: "Menu",
       items: [
         {
-          label: "Dashboard",
-          icon: <LayoutDashboard size={18} />,
-          to: "/admin",
+          label: "File Upload",
+          icon: <FileUp size={18} />,
+          to: "/",
           exact: true,
         },
         { label: "Users", icon: <Users size={18} />, to: "/admin/users" },
