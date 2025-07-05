@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Loader2, UploadCloud } from "lucide-react";
+import { Loader2, UploadCloud, FileText } from "lucide-react";
+import { useAlert } from "./Alert/AlertContext";
 
 function FileUpload() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [files, setFiles] = useState([]);
+
+  const { showAlert } = useAlert();
+
+  const fetchFiles = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/files");
+      setFiles(res.data);
+    } catch (err) {
+      console.error("Error fetching files:", err);
+      showAlert("error", "Failed to fetch uploaded files.");
+    }
+  };
 
   const handleUpload = async () => {
     if (!file) {
-      alert("Please select a file first.");
+      showAlert("warning", "Please select a file first.");
       return;
     }
 
@@ -21,11 +35,12 @@ function FileUpload() {
       await axios.post("http://localhost:5000/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      alert("Upload successful!");
+      showAlert("success", "File uploaded successfully!");
       setFile(null);
+      fetchFiles(); // Refresh list
     } catch (err) {
-      alert("Upload failed");
       console.error(err);
+      showAlert("error", "Upload failed. Please try again.");
     } finally {
       setUploading(false);
     }
@@ -66,6 +81,32 @@ function FileUpload() {
           </>
         )}
       </button>
+
+      {files.length > 0 && (
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-white">
+            Uploaded Files:
+          </h3>
+          <ul className="space-y-2 max-h-52 overflow-y-auto">
+            {files.map((f, idx) => (
+              <li
+                key={idx}
+                className="flex items-center gap-2 text-blue-600 dark:text-blue-300"
+              >
+                <FileText className="w-4 h-4" />
+                <a
+                  href={f.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline text-sm"
+                >
+                  {f.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

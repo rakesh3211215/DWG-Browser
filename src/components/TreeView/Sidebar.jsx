@@ -1,28 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  LayoutDashboard,
   FileUp,
-  ShieldCheck,
   Users,
-  Settings,
-  LogOut,
   ChevronDown,
   ChevronUp,
   FileWarning,
-  Ban,
-  ListTodo,
-  Calendar,
-  Contact,
-  Component,
-  Wrench,
-  Puzzle,
-  Palette,
-  ScrollText,
-  Table,
-  BarChart2,
-  MapPin,
-  DollarSign,
 } from "lucide-react";
 
 const Sidebar = ({ isOpen }) => {
@@ -70,7 +53,7 @@ const Sidebar = ({ isOpen }) => {
     <aside
       className={`${
         isOpen ? "block" : "hidden"
-      } w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col p-4 shadow-lg`}
+      } w-64 h-full md:h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex flex-col p-4 shadow-lg border-r border-gray-200 dark:border-gray-700 rounded-none`}
     >
       <div className="overflow-y-auto sidebar-scroll pr-2 flex-grow">
         {menuGroups.map((group, idx) => (
@@ -138,8 +121,6 @@ const Sidebar = ({ isOpen }) => {
           </div>
         ))}
       </div>
-
-      {/* === */}
     </aside>
   );
 };
